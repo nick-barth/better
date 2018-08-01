@@ -8,10 +8,10 @@ import './style.css'
 class Chat extends Component {
 
   render() {
-    console.log(this.props);
     return (
-      <div className='bold'>
-        wow
+      <div className="chat__container">
+        <div className="chat__window">
+        </div>
       </div>
     )
   }
