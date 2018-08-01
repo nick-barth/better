@@ -10,12 +10,12 @@
 
 .message__message-container {
     margin-left:.5rem;
+    width:100%;
 }
 
-.message__message {
-    padding: 2.1em;
-    background-color: #F6F6F6;
-    border-radius: 5px;
+.message__message-container--activeUser {
+    margin-left:0;
+    margin-right:.5rem;
 }
 
 .message__image {
@@ -25,13 +25,16 @@
     background-size: cover;
     border-radius: 50%;
     display: inline-block;
-    float:left;
     flex: 0 0 50px;
 }
 
 .message__info {
     text-align:left;
     margin-bottom: .25em;
+}
+
+.message__info--activeUser {
+    text-align: right;
 }
 
 .message__username,
@@ -53,4 +56,89 @@
 .message__timestamp {
     float:right;
     padding-right: .25em;
+}
+
+.message__timestamp--activeUser {
+    float:none;
+}
+
+.message__card {
+    position:relative;
+    display:block;
+    width:100%;
+    height:100%;
+    cursor:pointer;
+}
+
+.message__calender-icon {
+    height: .5rem;
+    margin-right:.25rem;
+}
+
+
+.message__card-front {
+    padding: 1.5em;
+    background-color: #F6F6F6;
+    border-radius: 5px;
+    text-align:left;
+}
+
+.message__card-front--activeUser {
+    background-color: #00c397;
+    color: #fff;
+}
+
+.message__card-back {
+    padding: 1.5em;
+    background-color: #F6F6F6;
+    border-radius: 5px;
+    text-align:center;
+}
+
+.message__card-front,
+.message__card-back {
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-transition: -moz-transform 500ms;
+    -o-transition: -o-transform 500ms;
+    -webkit-transition: -webkit-transform 500ms;
+    transition: transform 500ms;
+    display: block;
+    position: absolute;
+    width:100%;
+    box-sizing:border-box;
+}
+.message__card-front {
+    -moz-transform: perspective(300) rotateX(0);
+    -webkit-transform: perspective(300) rotateX(0);
+    transform: perspective(300) rotateX(0);
+    z-index: 900;
+}
+.message__card-back {
+    -moz-transform: rotateX(-180deg);
+    -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+    z-index: 800;
+}
+.message__card:hover .message__card-front {
+    -moz-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+    -moz-transform: perspective(300) rotateX(180deg);
+    -webkit-transform: perspective(300) rotateX(180deg);
+    transform: perspective(300) rotateX(180deg);
+}
+.message__card:hover .message__card-back {
+    background-color:#291941;
+    color:white;
+    z-index: 950;
+    -moz-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -moz-transform: perspective(300) rotateX(0deg);
+    -webkit-transform: perspective(300) rotateX(0deg);
+    transform: perspective(300) rotateX(0deg);
 }

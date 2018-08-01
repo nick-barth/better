@@ -10,3 +10,8 @@ body {
   margin:0;
   text-align: center;
 }
+
+input, button, submit { 
+  outline: none;
+  border:none;
+} 

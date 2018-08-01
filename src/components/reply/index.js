@@ -35,8 +35,13 @@ class Reply extends Component {
 
     }
 
-    handleSubmit() {
+    handleSubmit(e) {
+        e.preventDefault();
         const { reply } = this.state;
+
+        if (reply.length === 0){
+            return;
+        }
 
         fetch('http://localhost:3001/api/reply', {
             method: 'POST',
@@ -49,6 +54,7 @@ class Reply extends Component {
             })
         }).catch(res => {
             this.props.postsActions.addReply(reply);
+            this.setState({reply: '', charactersLeft: 140});
         });
     }
 
@@ -56,17 +62,17 @@ class Reply extends Component {
     render() {
         const { charactersLeft, reply } = this.state;
         return (
-            <div className="reply"> 
+            <form className="reply" onSubmit={(e) => this.handleSubmit(e)}> 
                 <label className="reply__label">
                     <div className={`reply__characters-left reply__characters-left--${charactersLeft < 25 ? "danger" : "valid"}`}>
                         {charactersLeft}
                     </div>
                     <input type="text" className="reply__input" placeholder="what's going on" value={reply} onChange={(e) => this.handleChange(e.target.value)} />
-                    <div className="reply__submit" onClick={() => this.handleSubmit()}>
+                    <button className="reply__submit" type="submit">
                         <img alt="send-icon" className="reply__submit-image" src="icons/send.svg" />
-                    </div>
+                    </button>
                 </label>
-            </div>
+            </form>
     )}
 }
 
