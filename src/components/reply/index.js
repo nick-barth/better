@@ -1,10 +1,16 @@
 // Vendor
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+// Actions
+import * as postsActions from '../../store/actions/posts.js';
+
 
 // CSS
 import './style.css';
 
-export default class Reply extends Component {
+class Reply extends Component {
 
     constructor(props) {
         super(props);
@@ -29,6 +35,23 @@ export default class Reply extends Component {
 
     }
 
+    handleSubmit() {
+        const { reply } = this.state;
+
+        fetch('http://localhost:3001/api/reply', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                reply: reply
+            })
+        }).catch(res => {
+            this.props.postsActions.addReply(reply);
+        });
+    }
+
 
     render() {
         const { charactersLeft, reply } = this.state;
@@ -39,10 +62,20 @@ export default class Reply extends Component {
                         {charactersLeft}
                     </div>
                     <input type="text" className="reply__input" placeholder="what's going on" value={reply} onChange={(e) => this.handleChange(e.target.value)} />
-                    <div className="reply__submit">
+                    <div className="reply__submit" onClick={() => this.handleSubmit()}>
                         <img alt="send-icon" className="reply__submit-image" src="icons/send.svg" />
                     </div>
                 </label>
             </div>
     )}
 }
+
+
+const mapDispatchToProps = dispatch => ({
+  postsActions: bindActionCreators(postsActions, dispatch)
+})
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Reply)

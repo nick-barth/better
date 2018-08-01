@@ -1,3 +1,5 @@
+import { ADD_REPLY } from '../types/posts';
+
 const initialState = [
     {
       "id": 2374237842,
@@ -27,6 +29,14 @@ const initialState = [
 
 export default function reducer(state=initialState, action) {
   switch (action.type) {
+    case ADD_REPLY: 
+      const newPost = {
+        "user": 4,
+        "message": action.payload,
+        "ts": + new Date()
+      }
+      const newState = state.concat([], [newPost])
+      return newState;
     default:
       return state
   }

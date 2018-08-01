@@ -1,14 +1,10 @@
 // Vendor
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 // Components
 import Message from '../../components/message';
 import Reply from '../../components/reply';
-
-// Actions
-import * as userActions from '../../store/actions/user'
 
 // CSS
 import './style.css'
@@ -47,11 +43,6 @@ const mapStateToProps = state => ({
   users: state.users
 })
 
-const mapDispatchToProps = dispatch => ({
-  userActions: bindActionCreators(userActions, dispatch)
-})
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Chat)

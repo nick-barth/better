@@ -16,6 +16,13 @@ const initialState = [
       "username": "baratunde",
       "real_name": "Baratunde",
       "verified": false
+    },
+    {
+      "id": 4,
+      "username": "nickbarth",
+      "real_name": "Nick Barth",
+      "verified": false,
+      "active_user": true
     }
 ];
 
