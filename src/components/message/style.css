@@ -70,11 +70,6 @@
     cursor:pointer;
 }
 
-.message__calender-icon {
-    height: .5rem;
-    margin-right:.25rem;
-}
-
 
 .message__card-front {
     padding: 1.5em;
@@ -93,6 +88,11 @@
     background-color: #F6F6F6;
     border-radius: 5px;
     text-align:center;
+}
+
+.message__calender-icon {
+    height:.8em;
+    margin-left:.25em;
 }
 
 .message__card-front,
@@ -116,10 +116,12 @@
     z-index: 900;
 }
 .message__card-back {
-    -moz-transform: rotateX(-180deg);
-    -webkit-transform: rotateX(-180deg);
-    transform: rotateX(-180deg);
+    -moz-transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
     z-index: 800;
+    background-color:#291941;
+    color:white;
 }
 .message__card:hover .message__card-front {
     -moz-transform: rotateX(180deg);
@@ -131,8 +133,6 @@
     transform: perspective(300) rotateX(180deg);
 }
 .message__card:hover .message__card-back {
-    background-color:#291941;
-    color:white;
     z-index: 950;
     -moz-transform: rotateX(0deg);
     -ms-transform: rotateX(0deg);
