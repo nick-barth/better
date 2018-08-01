@@ -13,19 +13,28 @@ export default class Message extends Component {
         super(props);
 
         this.state = {
-            isActiveUser: props.user.active_user ? true : false
+            isActiveUser: props.user.active_user ? true : false,
+            fadeIn: false
         };
+
+        props.transition ? setTimeout(() => this.fireTransition(), 150) : null;
 
     }
 
+    fireTransition() {
+        this.setState({
+            fadeIn:true
+        });
+    }
+
     render() {
-        const { isActiveUser } = this.state;
-        const { user, post } = this.props;
+        const { isActiveUser, fadeIn } = this.state;
+        const { user, post, transition } = this.props;
 
         const portrait = <div className="message__image" style={{backgroundImage: `url(imgs/${user.username}.jpg)`}} />;
 
         return (
-            <div className="message__container">
+            <div className={`message__container ${!transition ? 'message__container--old' : null } ${(transition && fadeIn) ? 'message__container--fadeIn' : null}`}>
                 {!isActiveUser ? portrait : null}
                 <div className={`message__message-container message__message-container--${isActiveUser ? 'activeUser' : 'other'}`}>
                     <div className={`message__info message__info--${isActiveUser ? 'activeUser' : 'other'}`}>

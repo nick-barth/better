@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+html, body {
+  height:100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -14,4 +18,5 @@ body {
 input, button, submit { 
   outline: none;
   border:none;
+  background-color:white;
 } 

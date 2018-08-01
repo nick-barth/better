@@ -42,20 +42,23 @@ class Reply extends Component {
         if (reply.length === 0){
             return;
         }
+        // API call example
+        // In a production app I think rarely this is how it is done however, I would build my own API wrapper that would interact with my store, 
+        // so I wouldn't have to do anything with api or store in the component
+        // fetch('http://localhost:3001/api/reply', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         reply: reply
+        //     })
+        // }).catch(res => {
+        // });
 
-        fetch('http://localhost:3001/api/reply', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                reply: reply
-            })
-        }).catch(res => {
-            this.props.postsActions.addReply(reply);
-            this.setState({reply: '', charactersLeft: 140});
-        });
+        this.props.postsActions.addReply(reply);
+        this.setState({reply: '', charactersLeft: 140});
     }
 
 

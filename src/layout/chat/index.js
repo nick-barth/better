@@ -11,7 +11,23 @@ import './style.css'
 
 class Chat extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      transitionIn:false
+    };
+  }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.posts.length !== nextProps.posts.length) {
+            this.setState({transitionIn: true});
+            this.fixedWindow.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
   render() {
+    const { transitionIn } = this.state;
     const { posts, users } = this.props;
     const messagesByTime = posts.sort((a, b) => a.ts - b.ts);
     const formattedPosts = messagesByTime.map((post) => {
@@ -20,15 +36,17 @@ class Chat extends Component {
         post
       }
     });
+    
 
     return (
       <div className="app__container">
         <div className="chat__container">
-          {formattedPosts.map(post => {
+          {formattedPosts.map((post,i) => {
             return (
-              <Message key={post.post.id} user={post.user} post={post.post} />
+              <Message key={i} user={post.user} post={post.post} transition={(i === posts.length-1 && transitionIn === true)} />
             )
           })}
+          <div className="chat__scroll-dummy" ref={(el) => { this.fixedWindow = el; }} />
         </div>
         <div className="reply__container">
           <Reply />
