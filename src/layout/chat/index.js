@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 
 // Components
 import Message from '../../components/message';
+import Reply from '../../components/reply';
 
 // Actions
 import * as userActions from '../../store/actions/user'
@@ -25,12 +26,17 @@ class Chat extends Component {
     });
 
     return (
-      <div className="chat__container">
-        {formattedPosts.map(post => {
-          return (
-            <Message key={post.post.id} user={post.user} post={post.post} />
-          )
-        })}  
+      <div className="app__container">
+        <div className="chat__container">
+          {formattedPosts.map(post => {
+            return (
+              <Message key={post.post.id} user={post.user} post={post.post} />
+            )
+          })}
+        </div>
+        <div className="reply__container">
+          <Reply />
+        </div>
       </div>
     )
   }

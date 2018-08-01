@@ -10,7 +10,7 @@ export function convertToMessageTimestamp(ts) {
 
     function addTrailingZero(time) {
         const timeString = time.toString();
-        if (timeString.length == 1) {
+        if (timeString.length === 1) {
             return '0' + timeString;
         } else {
             return timeString;

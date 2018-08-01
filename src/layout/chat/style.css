@@ -1,3 +1,14 @@
-.bold{
-  fontWeight: 'bold'
+.app__container {
+  min-height: 600px;
+  position:relative;
+  max-width:800px;
+  
+}
+
+.reply__container {
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #00c397;
+    width:100%;
+    height: 5.5em;
 }
