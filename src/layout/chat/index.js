@@ -1,25 +1,44 @@
+// Vendor
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+// Components
+import Message from '../../components/message';
+
+// Actions
 import * as userActions from '../../store/actions/user'
+
+// CSS
 import './style.css'
 
 class Chat extends Component {
 
   render() {
+    const { posts, users } = this.props;
+    const messagesByTime = posts.sort((a, b) => a.ts - b.ts);
+    const formattedPosts = messagesByTime.map((post) => {
+      return {
+        user: users.find(user => user.id === post.user),
+        post
+      }
+    });
+
     return (
       <div className="chat__container">
-        <div className="chat__window">
-        </div>
+        {formattedPosts.map(post => {
+          return (
+            <Message key={post.post.id} user={post.user} post={post.post} />
+          )
+        })}  
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  post: state.post,
-  user: state.user
+  posts: state.posts,
+  users: state.users
 })
 
 const mapDispatchToProps = dispatch => ({
