@@ -1,4 +1,56 @@
+.message__container {
+    padding: 0 2.1em;
+    display:flex;
+    margin-bottom: 1em;
+}
+
+.message__container:nth-child(1) {
+    margin-top:3em;
+}
+
+.message__message-container {
+    margin-left:.5rem;
+}
+
+.message__message {
+    padding: 2.1em;
+    background-color: #F6F6F6;
+    border-radius: 5px;
+}
+
 .message__image {
     width: 50px;
-    height:50px;
+    height: 50px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    display: inline-block;
+    float:left;
+    flex: 0 0 50px;
+}
+
+.message__info {
+    text-align:left;
+    margin-bottom: .25em;
+}
+
+.message__username,
+.message__realname,
+.message__timestamp {
+    display:inline-block;
+    font-size: .8em;
+}
+
+.message__realname {
+    padding-left: .5rem;
+    padding-right:.25rem;
+}
+
+.message__username {
+    padding-left:.25rem;
+}
+
+.message__timestamp {
+    float:right;
+    padding-right: .25em;
 }
